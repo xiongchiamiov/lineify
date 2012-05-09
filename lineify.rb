@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 parseExpressions = []
-parser = File.new('parsers/mailq', 'r')
+parser = File.new(ENV['HOME']+'/.config/lineify/parsers/mailq', 'r')
 parser.each do |line|
 	# If a line contains only whitespace and [...], it's a wildcard that matches
 	# any number of lines.  Leave it as nil for now so we can deal with it
