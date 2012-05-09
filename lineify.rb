@@ -19,6 +19,7 @@ end
 index = 0
 ignore = false
 ARGF.each do |line|
+	line.strip!
 	# TODO: This whole thing needs to be rewritten.  The logic is butt-ugly.
 	#puts 'line: '+line
 	#puts 'regex: '+parseExpressions[index].to_s
@@ -28,19 +29,25 @@ ARGF.each do |line|
 		index += 1
 		if index == parseExpressions.size
 			index = 0
+			puts
+		else
+			print '|||'
 		end
 	elsif line =~ parseExpressions[index]
 		print line
 		ignore = false
 	else
 		$stderr.puts 'Skipping unmatching line' if !ignore
-		puts line if ignore
+		print line if ignore
 	end
 	
 	if !ignore
 		index += 1
 		if index == parseExpressions.size
 			index = 0
+			puts
+		else
+			print '|||'
 		end
 	end
 	#puts '-'*80
